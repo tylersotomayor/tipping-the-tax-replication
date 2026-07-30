@@ -4,6 +4,7 @@
 
 - Paper: [`main.pdf`](main.pdf)
 - Poster: [`poster/tipping-the-tax-poster.pdf`](poster/tipping-the-tax-poster.pdf)
+- Slides: [`presentation/tipping-the-tax-slides.pdf`](presentation/tipping-the-tax-slides.pdf)
   (PREDOC Summer Research Conference, University of Chicago Booth School of Business, July 30–31, 2026)
 - Interactive companion: <https://tylersotomayor.github.io/tipping-the-tax-companion/>
 - Contact: tyler.sotomayor@columbia.edu · gu1245@columbia.edu
