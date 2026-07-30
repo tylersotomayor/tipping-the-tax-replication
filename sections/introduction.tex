@@ -1,0 +1,151 @@
+\section{Introduction}
+\label{sec:introduction}
+
+At 3:58 on a weekday afternoon, a Manhattan taxi ride ends with a
+\$17.70 metered fare. The backseat screen assembles the bill---fare,
+fixed fees, congestion surcharge---into a \$21.70 total and offers three
+buttons: 20, 25, or 30 percent, computed on that total. Four minutes
+later, the identical ride ends differently. The rush-hour surcharge has
+switched on, the total reads \$24.20, and every button is higher---the
+20 percent button by exactly fifty cents, which is 20 percent of the
+\$2.50 the fare schedule just added (Figure~\ref{fig:screens}). Nothing
+about the trip, the driver, or the rider's regard for the driver has
+changed. A scheduled line item changed, and the suggestion arithmetic
+carried it into the tip.
+
+\subsection{The mechanism on the screen}
+Figure~\ref{fig:feestack} shows what the buttons multiply: every
+component of the fare stack, from the metered fare the driver keeps to
+the congestion fees the driver merely collects and remits, lands in one
+total, and the percentages are computed on the sum. This is not one
+vendor's quirk. All three payment vendors match tips to the
+fee-inclusive base at four to five times the rate of any narrower base
+(Table~\ref{tab:vendor}), and the base is visible in behavior alone:
+57 percent of positive credit-card tips sit in the half-point bin at
+\emph{exactly} 20 percent of the all-in total, and the same tips,
+recomputed against the metered fare, show no spikes at all
+(Figure~\ref{fig:spikes}). \textcite{haggag2014default} established
+that suggested tips cause tips. A suggestion, however, is a percentage
+\emph{of something}. This paper is about the something---specifically,
+about what happens when public policy moves it.
+
+The question is the pass-through rate: when a statute puts one more
+dollar on the meter, how many cents cross into the tip? Call it $\rho$.
+Answering requires surcharge variation that is not correlated with who
+is riding, and New York's fare schedule supplies it daily: the
+rush-hour surcharge applies to weekday pickups from 4:00pm, assigned by
+the pickup minute. We build date-by-minute cells from the universe of
+standard-rate credit-card trips, September 2021 through September 2024,
+and compare tips minutes apart across the cutoffs.
+
+\subsection{A daily experiment, and a trap in it}
+Tips jump at 4:00pm. But the naive comparison is a trap: the metered
+fare jumps too, by \$0.49, because rush-hour traffic makes trips slower
+and dearer (Table~\ref{tab:balance}), and attributing the whole tip step
+to the surcharge inflates it by a third (\$0.389 against \$0.292).
+The repair is in the fare schedule itself. On weekends the same clock
+carries no surcharge, so the weekday--weekend \emph{difference in
+discontinuities} at 4:00pm nets out whatever rush hour does to trips on
+any day of the week \parencite{grembi2016difference}; our analysis plan
+locked weekends as controls before estimation. Conditioning on the
+non-surcharge fare, the weekend placebo step falls from \$0.088 to
+\$0.024; differencing weekday against weekend gives $0.108$ per
+statutory dollar in the \$2.50 regime and $0.105$ in the \$1.00 regime,
+and dropping the fare control entirely moves those by about a cent.
+Identification does not lean on a functional-form assumption about
+fares; the weekend difference does the work.
+
+\subsection{One parameter}
+The headline result is that about \emph{eleven cents of every statutory
+surcharge dollar becomes tip}. Across the six primary within-day
+changes---the rush surcharge switching on at two statutory doses, the
+overnight surcharge switching on at two doses, and two downward changes
+where the net surcharge falls---the intention-to-treat effect per
+statutory dollar spans $0.090$ to $0.117$, with a precision-weighted
+mean of $0.108$ (SE $0.001$). Scaled instead by the surcharge dollars
+the meter actually records, $\rho^{IV}$ runs $0.122$ to $0.150$. The
+average tip in this sample is 17.4 percent of the base, so riders tip a
+surcharge dollar at roughly four-fifths the rate they tip a fare
+dollar: the surcharge is not distinguished from the fare because, on
+the screen, it is not distinguishable from the fare.
+
+Figure~\ref{fig:coefplot} assembles every locked estimate on one axis,
+and it is the paper's argument in one frame. Two statutory doses,
+because the legislature repriced both surcharges by 150 percent in
+December 2022. Surcharges switching on and switching off. Three clocks.
+Weekday and weekend cutoffs. A second control series---legal holidays,
+working days with no surcharge---replicates the weekend difference at
+$0.095$--$0.096$, and its exception proves the rule: Juneteenth, which
+the meters do not exempt, shows the full step. A \$5.00 surcharge on
+JFK \emph{flat} fares---where the metered fare cannot jump at 4:00pm by
+construction---gives $0.133$--$0.149$ per statutory dollar with no
+controls at all, twice our largest dose on a base three times larger.
+And---with no clock in it at all---the January 2025 congestion toll,
+identified from a boundary in space: the spatial estimate is $0.107$
+per statutory dollar, against the clock designs' pooled $0.108$. Two estimates fail: both at 6:00am on
+weekdays, where the dawn shift toward airport-bound trips breaks the
+design's conditioning. We report them in grey rather than discard them,
+because their weekend twins at the same clock and dose are
+normal---which localizes the failure to weekday-dawn composition, not
+to the mechanism, and shows the identifying assumption is checkable
+(Section~\ref{sec:results-6am}).
+
+\subsection{Riders do not undo it}
+Three findings say the pass-through is a property of the interface
+rather than of attentive generosity. First, the button is not the
+mechanism: the two major vendors' riders take an exact default on 19
+versus 65 percent of tips, yet pass-through is statistically identical
+at both ($0.147$ and $0.152$ per recorded dollar)---riders who type
+custom amounts compute percentages on the same inclusive total the
+screen displays. Second, riders barely react to repricing: when the
+rush surcharge rose from \$1.00 to \$2.50 overnight in December 2022,
+keeping tip dollars fixed required the rush-window tip rate to fall
+1.1 points; it fell 0.22, immediately, and never drifted further over
+the following six months. Third, the quantity margins are silent:
+pickup density is smooth through the cutoff, card use does not fall,
+and zero-tipping rises 0.15 percentage points. Riders absorb the fee on
+every margin except the one the software moves for them.
+
+\subsection{What is new}
+That payment interfaces differ in the base they multiply, and that
+add-ons inside the base raise tips, is established:
+\textcite{thakral2026five} document both in this market, using the 2012
+fare change and the two archival vendors' differing treatment of tax
+and tolls, and our archival evidence confirms their account---the base
+difference explains about three-quarters of the vendor tip gap that
+\textcite{haggag2014default} used to identify default effects
+(Appendix~\ref{app:replication}). What has not been measured is what
+\emph{statutory policy} does when it rides that base. A legislated
+surcharge that switches at a known minute, at a dose the legislature
+set and then changed, is variation of a different kind than a fare
+change or a route-determined toll, and it identifies a policy object:
+the pass-through of a public fee into a private gratuity, per statutory
+dollar. We estimate it, test its stability across doses, directions,
+clocks, and two congestion-pricing programs, and aggregate the
+resulting transfer. Prior work shows that interfaces construct the
+tipping norm; this paper shows that fiscal policy conscripts it.
+
+\subsection{Incidence, stakes, and a policy dial}
+The driver remits the congestion fee and keeps the tip, so the toll's
+true incidence splits: on a \$0.75 CBD toll, the rider pays about
+\$0.83, the MTA receives \$0.75, and the driver nets the induced tip.
+Aggregated against fees actually charged, the 2019 congestion
+surcharge's \$127.2 million on card trips generated roughly
+\$18.7 million a year in unlegislated gratuities, and the 2025 toll
+adds about \$2.2 million a year (Section~\ref{sec:counterfactuals}).
+These are transfers, not losses---and they run from riders to drivers,
+plausibly progressively. The point is not that the transfer is bad; it
+is that no one chose it. The dial that sets it is one line of
+payment-terminal arithmetic---the definition of the base---and the 2012
+market, in which one vendor computed on a narrower base, shows the dial
+is real engineering, not hypothesis. What a default is computed
+\emph{on} matters as much as what it is set \emph{to}.
+
+The rest of the paper proceeds as follows.
+Section~\ref{sec:related-literature} situates the paper.
+Section~\ref{sec:empirical-facts} presents the fare stack, the data,
+and the base facts. Section~\ref{sec:model} states the designs.
+Section~\ref{sec:results} reports the estimates, the mechanism
+evidence, and the congestion-fee designs.
+Section~\ref{sec:counterfactuals} prices the transfers and the
+counterfactuals, and Section~\ref{sec:conclusion} concludes.

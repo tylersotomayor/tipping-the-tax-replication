@@ -1,0 +1,156 @@
+\section{Replication: Haggag and Paci (2014) and the Origins of the Base}
+\label{app:replication}
+
+\textcite{haggag2014default} established that default menus cause tips
+using New York taxi data from 2009--2013, exploiting the fact that the
+city's two payment vendors displayed different suggestions. We replicate
+that vendor comparison on six archival months (April--June and October
+2012, April--May 2013; 42.7 million credit-card trips). The two vendors
+differed not only in the \emph{level} of their suggestions but in the
+\emph{base} they computed them on---a fact documented independently by
+\textcite{thakral2026five}, whose description of the two bases our match
+rates confirm. What we add here is the arithmetic linking that base
+difference to the tip gap \textcite{haggag2014default} measured.
+
+\subsection{Recovering the menus}
+Figure~\ref{fig:hp} plots the distribution of tips as a percentage of the
+metered fare, by vendor, for fares of \$15 and above. Vendor 2 (VTS)
+shows sharp spikes at exactly 20.0 and 25.0 percent. Vendor 1 (CMT)
+shows spikes displaced slightly to the right, at 20.5 and 25.5 percent.
+The displacement is not noise, and it is not a different menu level: it
+is what a 20 percent button produces when the percentage is applied to a
+base that includes the tax and tolls sitting on top of the fare. Vendor
+2's spikes land on round percentages of the fare because its base is the
+fare plus the time-of-day surcharge, and that surcharge is zero on the
+majority of daytime trips---so for most of the distribution its base and
+the metered fare coincide. This is exactly why the next subsection tests
+the candidate bases directly rather than reading them off spike
+locations: the spikes alone cannot separate ``fare'' from ``fare plus a
+surcharge that is usually zero.''
+
+\begin{figure}[!htbp]
+  \centering
+  \singlespacing
+  \caption{\capttitle{Vendor Default Menus in the Archival Data, 2012--2013}}
+  \label{fig:hp}
+  \includegraphics[width=0.84\textwidth]{fig-hp.pdf}
+  \floatnotes{Distribution of credit-card tips as a percentage of the
+  metered fare, in half-point bins, for trips with fares of \$15 or more.
+  Spikes mark each vendor's on-screen default buttons. Vendor 2's spikes
+  fall exactly on 20 and 25 percent of the fare; Vendor 1's are displaced
+  upward because its percentages are computed on a surcharge-inclusive
+  base.}
+\end{figure}
+
+\subsection{Testing the base directly}
+Table~\ref{tab:hp-base} makes the point without reference to spike
+locations. For each vendor we compute the share of positive card tips
+that equal a 20, 25, or 30 percent button applied to each candidate
+base, walking up the fare stack one component at a time. Testing the
+full ladder matters: the surcharge field is zero on most daytime trips,
+so ``fare'' and ``fare plus surcharge'' coincide there, and a test that
+compares only the fare against the all-in total will appear to match the
+fare for a vendor that in fact uses fare-plus-surcharge.
+
+The pattern is categorical and identical in all six months. Vendor 2
+(VTS) matches \emph{fare plus surcharge}---60.7 percent, against 30.4
+percent for the fare alone and 1.4 percent for the all-in total. Vendor
+1 (CMT) matches the \emph{all-in total including tax and
+tolls}---53.8 percent, against essentially nothing for either narrower
+base. So the vendors did not disagree about whether to include the
+time-of-day surcharge; both included it. They disagreed about the sales
+tax and tolls sitting above it. This is the base description in
+\textcite{thakral2026five}, and our match rates confirm it.
+
+\begin{table}[!htbp]
+  \centering
+  \singlespacing
+  \caption{\capttitle{Which Base Did Each Vendor Use in 2012--2013?}}
+  \label{tab:hp-base}
+  \small
+  \begin{tabular}{@{}lrcccc@{}}
+    \toprule
+    & & \multicolumn{4}{c}{Share of tips matching a 20/25/30\% button on:} \\
+    \cmidrule(lr){3-6}
+    Vendor & Card trips & Fare & $+$ surcharge & $+$ tax & $+$ tolls \\
+    \midrule
+    \input output/tables/tab-hp-base.tex
+    \bottomrule
+  \end{tabular}
+  \floatnotes{Six archival months (April--June and October 2012,
+  April--May 2013), credit-card trips with metered fares of \$4--60 and
+  positive tips. A match requires equality to within half a cent. Each
+  column adds one component of the fare stack to the base of the
+  preceding column. Vendor 2 computes on fare plus surcharge; Vendor 1
+  computes on the all-in total.}
+\end{table}
+
+\subsection{Does the base difference explain the tip difference?}
+Vendor 1's mean tip rate is 20.6 percent of fare; Vendor 2's is 19.7
+percent, an observed gap of $0.94$ percentage points. Conditioning on
+month and fare bin, the gap is $0.0089$ (SE $0.0011$), reported in
+Table~\ref{tab:hp}. That gap has a prediction attached to it, and the
+correct prediction follows from the correct base difference: what Vendor
+1 includes and Vendor 2 does not is the sales tax and tolls, which
+average 6.51 percent of the metered fare. A rider pressing a 20 percent
+button therefore tips $0.20 \times 0.0651 = 1.30$ percentage points of
+fare more at Vendor 1 than at Vendor 2.
+
+Not every rider presses a button. Scaling by Vendor 1's exact-default
+share of 53.8 percent gives an expected gap of $0.70$ percentage
+points, against an observed $0.94$. Base inclusion accounts for roughly
+three-quarters of the vendor gap; the residual quarter is the level
+difference in the menus themselves and the difference in zero-tipping
+(2.0 percent of Vendor 1's trips against 3.6 percent of Vendor 2's).
+The vendor difference that \textcite{haggag2014default} used to identify
+default effects is therefore substantially---though not
+wholly---attributable to the base-inclusion mechanism this paper
+studies.
+
+\begin{table}[!htbp]
+  \centering
+  \singlespacing
+  \caption{\capttitle{Vendor Gap in Mean Tip Rate, 2012--2013}}
+  \label{tab:hp}
+  \small
+  \begin{tabular}{@{}lc@{}}
+    \toprule
+    & Tip as share of fare \\
+    \midrule
+    \input output/tables/tab-hp.tex
+    \bottomrule
+  \end{tabular}
+  \floatnotes{Six archival months, credit-card trips with fares of
+  \$4--60. The difference conditions on month-by-fare-bin fixed effects
+  and clusters by fare bin. \sym{***}, \sym{**}, \sym{*}: significance at
+  1, 5, 10 percent.}
+\end{table}
+
+\subsection{Executing their deposited code}
+The authors' replication archive (openICPSR 113897) contains their
+cleaned 2009 analysis file and estimation code. Running their Table 2
+specification verbatim on their data---the \$15 menu-threshold
+discontinuity in CMT trips, third-order fare polynomial on each side,
+day-of-week, hour, and borough controls, driver fixed effects, standard
+errors clustered by fare bin, fares \$5--25---yields a tip jump at the
+threshold of \$0.2757 (SE \$0.0060) on 6.22 million trips, with a mean
+tip of \$2.22 just below the cutoff: their headline default effect,
+regenerated from their archive on our machines. The lineage of the
+present paper is then exact: their experiment moves the \emph{menu} at
+a fare threshold and tips jump 12 percent of the base; ours moves the
+\emph{base} at a clock threshold and tips move by 80 percent of the
+prevailing tip rate. Both are the same object---suggested-gratuity
+arithmetic doing fiscal work riders do not undo.
+
+\subsection{Convergence}
+The historical comparison closes the paper's argument. In 2012 the
+market was split: one vendor stopped its base at the fare plus the
+time-of-day surcharge, the other carried it all the way to the all-in
+total including tax and tolls. By 2025, as Table~\ref{tab:vendor} shows,
+all three vendors compute on the inclusive total. The design choice that
+was once a point of disagreement between payment systems has become the
+industry standard, and with it the channel through which government fees
+flow into gratuities. That convergence is what makes the channel a
+market-wide fiscal fact rather than one vendor's quirk, and it is the
+feature of the modern setting that the archival literature could not
+have observed.

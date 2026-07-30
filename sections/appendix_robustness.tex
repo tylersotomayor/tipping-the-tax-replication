@@ -1,0 +1,61 @@
+\section{Additional Robustness}
+\label{app:robustness}
+
+\subsection{Wild cluster bootstrap}
+With 449 date clusters, cluster-robust inference on the headline
+reduced form is unlikely to be distorted, but the analysis plan locks a
+wild cluster bootstrap as a check. Using Webb weights and 9{,}999
+replications on the \emph{corrected} weekday step in the \$2.50
+regime---the preferred specification, not the uncorrected one---the
+bootstrap rejects the null of no effect at $p < 10^{-6}$, with a 95
+percent confidence set of $[0.2834, 0.3012]$ around a point estimate of
+\$0.2923 \parencite{cameron2008bootstrap}.
+
+\subsection{Permutation over candidate cutoffs}
+The clock design has a natural randomization test: re-estimate the
+discontinuity at candidate minutes where no surcharge changes and locate
+the true cutoff in the resulting distribution. Every candidate---true
+and placebo alike---is estimated with the same specification and the
+same $\pm 30$ minute bandwidth, so the placebo distribution is
+comparable to the actual statistic; candidates are drawn only from
+windows that never cross 4:00pm, so no placebo inherits part of the true
+discontinuity. Of 60 such candidates, \emph{none} produces an absolute
+estimate as large as the true cutoff's $0.2401$.
+
+\subsection{Placebo cutoffs}
+Placebo cutoffs at 3:15pm and 5:00pm---one before the surcharge begins,
+one after it is already in force---produce first stages of $-0.001$ and
+$-0.023$ respectively, against $1.951$ at the true cutoff, and tip-side
+effects of $-\$0.0003$ (SE \$0.0068) and $-\$0.0079$ (SE \$0.0071).
+Both sides of each placebo are null. Whatever generates the 4:00pm
+discontinuity is specific to the minute at which the fare schedule
+changes.
+
+\subsection{Mechanical benchmark}
+A purely mechanical account of pass-through predicts a tip step equal to
+the surcharge step times the prevailing tip rate on the base. In the
+\$2.50 regime the surcharge step is \$1.951 and the pre-cutoff tip rate
+is $0.174$, for a mechanical prediction of \$0.339. The corrected
+estimate is \$0.292---about 86 percent of the mechanical benchmark. The
+remaining fourteen percent is the behavioral offset: the small declines
+in exact-default adherence and the small rise in zero-tipping documented
+in Section~\ref{sec:results}. Pass-through is therefore close to, but
+slightly below, complete.
+
+\subsection{Synthetic difference-in-differences}
+Because the binary toll event study fails a strict pre-trend test, we
+re-estimate the adoption effect with synthetic difference-in-differences
+\parencite{arkhangelsky2021synthetic}, which reweights both control
+zones and pre-periods to match the treated group's pre-treatment
+trajectory---the estimator built for exactly this failure mode. On a
+balanced zone-month panel of fare-conditioned tips (treated: the 52
+CBD-pickup zones; donors: never-eligible zone pools), the SDID average
+treatment effect is \$0.061 (bootstrap SE \$0.050), an implied
+$\rho = 0.102$---inside the family of estimates but underpowered at
+zone-level aggregation, where the design surrenders the cell-level
+precision of the main specifications. An in-time placebo assigning a
+fake July 2024 adoption returns $-\$0.125$ (SE $0.069$), reflecting the
+same 2024 drift the Wald test flags. We read SDID as corroborating the
+magnitude while confirming, rather than repairing, the pre-period's
+imperfection; the dose staircase remains the spatial design's strongest
+evidence.

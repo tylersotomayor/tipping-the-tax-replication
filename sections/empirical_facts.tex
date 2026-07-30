@@ -1,0 +1,209 @@
+\section{Institutional Setting and Data}
+\label{sec:empirical-facts}
+
+\subsection{The fare stack}
+A metered yellow-cab fare is a stack, and its components differ in one
+respect that matters throughout this paper: who ends up with the money.
+Figure~\ref{fig:feestack} sets them side by side.
+
+Two components are \emph{fare revenue the driver keeps}: a rush-hour
+surcharge on weekday pickups between 4:00pm and 8:00pm, and an overnight
+surcharge from 8:00pm to 6:00am. Both are set by the TLC, and both were
+\$1.00 and \$0.50 respectively until December 18, 2022, and \$2.50 and
+\$1.00 thereafter \parencite{tlc2022notice}. They are prices, not taxes.
+
+Four components are \emph{collected from the rider and remitted}: a
+\$0.50 MTA State Surcharge, a \$1.00 improvement surcharge, a \$2.50 New
+York State congestion surcharge on trips south of 96th Street (since
+2019), and a \$0.75 MTA congestion toll south of 60th Street (since
+January 5, 2025). For these the driver is a collection agent and nets
+nothing; on medallion taxis the technology service provider withholds
+the congestion surcharge before funds reach the owner.
+
+The distinction organizes the empirical strategy. The within-day clock
+designs identify pass-through from the two \emph{fare} surcharges, which
+switch at fixed minutes and so deliver sharp, high-powered, repeatedly
+replicated variation. The spatial designs identify it from the two
+\emph{remitted} congestion fees, which is the fiscal case the paper is
+ultimately about but which offers weaker variation. That the two give
+the same answer is the point: the payment interface does not distinguish
+them, because on the screen they are indistinguishable. Every component
+in Figure~\ref{fig:feestack}, whoever receives it, is added to the
+metered fare before the payment screen appears, and the percentage
+buttons multiply the sum.
+
+Figure~\ref{fig:screens} shows the mechanism as a rider encounters it,
+before any econometrics: the same trip four minutes apart, with every
+suggested tip higher after 4:00\,PM because a government surcharge has
+entered the base.
+
+\input{sections/fig_feestack}
+
+\input{sections/fig_screens}
+
+\subsection{What base do the buttons use?}
+Figure~\ref{fig:spikes} shows the answer before any matching exercise.
+Expressed as a percentage of the all-in pre-tip total, 57.3 percent of
+positive credit-card tips fall in the half-point bin at \emph{exactly}
+20 percent, with further spikes at exactly 25 and 30---the three
+buttons. Expressed as a percentage of the metered fare alone, the same
+tips have no spikes anywhere: no bin holds more than 3.6 percent. The
+smaller spikes at 10 and 15 percent of the all-in total are custom
+round percentages computed on the same inclusive base---a first sign,
+confirmed in Section~\ref{sec:results-vendor}, that the base governs
+even riders who never press a button.
+
+\begin{figure}[!htbp]
+  \centering
+  \singlespacing
+  \caption{\capttitle{The Base, Drawn: The Same Tips Against Two
+  Candidate Bases}}
+  \label{fig:spikes}
+  \includegraphics[width=0.88\textwidth]{fig-spikes.pdf}
+  \floatnotes{June 2025, standard-rate credit-card trips with positive
+  tips and no tolls (2.18 million trips), in bins of half a percentage
+  point over 5--40 percent. Panel A expresses each tip as a percentage
+  of the all-in pre-tip total---the base the buttons multiply;
+  annotations mark the bins at exactly 20, 25, and 30 percent. Panel B
+  expresses the same tips as a percentage of the metered fare alone, on
+  identical axes. Only the buttons' base produces spikes.}
+\end{figure}
+
+Table~\ref{tab:vendor} sharpens the fact by vendor. For each
+payment vendor we compute the share of credit-card tips that equal 20,
+25, or 30 percent of a candidate base to within half a cent. In July
+2024, before the CBD toll existed, the fee-inclusive and fee-exclusive
+bases are numerically identical and the match rates coincide exactly, as
+they must. In June 2025 they diverge sharply: the fee-inclusive total
+matches 17 to 74 percent of tips depending on vendor, the fee-exclusive
+total only 4 to 17 percent. All three vendors compute suggested tips on
+the surcharge-inclusive total.
+
+The table also documents striking vendor heterogeneity in adherence: at
+one vendor 17 percent of tips are exact button presses, at the others 66
+and 74 percent. Our estimates aggregate over this heterogeneity, so
+$\rho$ should be read as a market-wide average rather than a
+vendor-specific behavioral parameter.
+
+\begin{table}[!htbp]
+  \centering
+  \singlespacing
+  \caption{\capttitle{Which Base Do the Percentage Buttons Use?}}
+  \label{tab:vendor}
+  \small
+  \begin{tabular}{@{}lcccc@{}}
+    \toprule
+    & & \multicolumn{3}{c}{Share of tips matching 20/25/30\% of:} \\
+    \cmidrule(lr){3-5}
+    Vendor, month & Card tips & All-in total & Excl.\ CBD fee & Fare only \\
+    \midrule
+    \input output/tables/tab-vendor.tex
+    \bottomrule
+  \end{tabular}
+  \floatnotes{Card trips with positive tips and no tolls. July 2024
+  precedes the CBD congestion fee, so the first two bases are identical
+  by construction; June 2025 follows it. A match requires equality to
+  within half a cent.}
+\end{table}
+
+\subsection{Data and estimation cells}
+Trip records for every yellow-cab trip---pickup timestamp to the second,
+fare components, tip (recorded for card payments only), payment type,
+vendor, and pickup zone---are published monthly by the TLC
+\parencite{tlc2026trip}. We aggregate to date-by-minute cells in windows
+around the three clock cutoffs, recording trip counts, mean metered
+surcharge, mean pre-tip total, mean card tip, the share of tips exactly
+at a default button, the zero-tip share, and the card share. Separate
+zone-by-fare-bin cells support the congestion-fee designs. Cells, not
+raw trips, are the estimation input; the build is deterministic and
+versioned with the code.
+
+Table~\ref{tab:descriptive} describes the sample. The two surcharge
+regimes are similar in composition---card share near 77 percent, mean
+tips of \$3.44 and \$4.49, mean pre-tip totals of \$19 and \$26---with
+the difference in the mean metered surcharge reflecting the December
+2022 increase. Roughly half of all credit-card tips are exactly equal to
+a default button, which is the behavioral fact the rest of the paper
+builds on.
+
+\begin{table}[!htbp]
+  \centering
+  \singlespacing
+  \caption{\capttitle{Descriptive Statistics by Surcharge Regime}}
+  \label{tab:descriptive}
+  \small
+  \begin{tabular}{@{}p{0.62\textwidth}r@{}}
+    \toprule
+    & Value \\
+    \midrule
+    \input output/tables/tab-descriptive.tex
+    \bottomrule
+  \end{tabular}
+  \floatnotes{Date-by-minute cells in the estimation windows around the
+  4:00pm, 8:00pm, and 6:00am cutoffs, September 2021--September 2024.
+  Trip-weighted means. Tips are observed for credit-card payments only.}
+\end{table}
+
+\subsection{The motivating pattern}
+Figure~\ref{fig:firststage} shows the treatment. Mean metered surcharge
+by minute of day rises in a single step at 4:00pm---by \$0.72 in the
+\$1.00 regime and \$1.95 in the \$2.50 regime. The step is sharp because
+the surcharge is assessed on the pickup timestamp; were it assessed at
+dropoff, the trip-duration distribution would smear it across half an
+hour.
+
+The steps fall short of the statutory \$1.00 and \$2.50, and the reason
+is a property of the data rather than of the fare rules. The TLC's
+\texttt{extra} field records miscellaneous extras, not the rush
+surcharge alone, and it is contaminated on both sides of the cutoff. In
+the \$2.50 regime, 23.0 percent of standard-rate card trips in the hour
+\emph{before} 4:00pm already carry exactly \$2.50 in that field, while
+4.5 percent of trips in the hour after carry nothing; the balance sits
+at values such as \$5.00 and \$7.50 that no single surcharge explains
+(Table~\ref{tab:composition}). Because the measured step is therefore
+not a clean statutory dose, we report two scalings throughout: an
+intention-to-treat effect per \emph{statutory} dollar, which divides by
+a known constant and requires no assumption about the field, and an
+instrumental-variables $\rho$ that scales by the measured step. The
+first is the conservative number and the second requires the
+discontinuity in \texttt{extra} to be entirely rush surcharge---an
+assumption the composition table does not establish. We report both and
+flag which is which at every point.
+
+\begin{figure}[!htbp]
+  \centering
+  \singlespacing
+  \caption{\capttitle{The First Stage: Metered Surcharge by Minute of Day}}
+  \label{fig:firststage}
+  \includegraphics[width=0.82\textwidth]{fig-firststage.pdf}
+  \floatnotes{Trip-weighted mean of the metered surcharge field by
+  minute of pickup, weekdays excluding holidays. Navy: \$1.00 regime
+  (September 2021--December 2022). Orange: \$2.50 regime (December
+  2022--September 2024). The dashed line marks 4:00pm.}
+\end{figure}
+
+\begin{table}[!htbp]
+  \centering
+  \singlespacing
+  \caption{\capttitle{What the Surcharge Field Is Made Of}}
+  \label{tab:composition}
+  \small
+  \begin{tabular}{@{}lccccc@{}}
+    \toprule
+    & \multicolumn{4}{c}{Share of card trips with \texttt{extra} equal to:}
+      & Mean \\
+    \cmidrule(lr){2-5}
+    Cutoff, side & \$0 & \$1.00 & \$2.50 & other & \texttt{extra} \\
+    \midrule
+    \input output/tables/tab-composition.tex
+    \bottomrule
+  \end{tabular}
+  \floatnotes{Standard-rate card trips, weekdays excluding holidays,
+  \$2.50 regime, within 60 minutes of each cutoff. The field is
+  contaminated on both sides of every cutoff: a substantial share of
+  trips carries the higher value before the surcharge switches on, and
+  a nonzero share carries none after. This is why the measured step
+  falls short of the statutory dose, and why estimates scaled by the
+  measured step ($\rho^{IV}$) are reported alongside estimates scaled by
+  the statutory dose (ITT).}
+\end{table}

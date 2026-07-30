@@ -1,0 +1,89 @@
+% Institutional illustration: the fare stack, who receives each component, and
+% which components sit inside the tip base. Permitted TikZ use (cf.
+% sections/fig_screens.tex); all empirical figures remain StataBE-generated.
+% Illustrative trip: weekday 4:30pm pickup, Manhattan south of 60th St, 2025.
+% Metered fare is the estimation sample's pre-4pm mean ($17.70).
+\begin{figure}[!htbp]
+  \centering
+  \singlespacing
+  \caption{\capttitle{The Fare Stack: Who Receives Each Component, and What
+  the Tip Buttons Multiply}}
+  \label{fig:feestack}
+  \begin{tikzpicture}[
+      font=\footnotesize,
+      seg/.style={draw=black!55, line width=0.5pt, minimum height=0.85cm},
+      drv/.style={seg, fill=statanavy!35},
+      gov/.style={seg, fill=stataorange!45},
+      lab/.style={font=\scriptsize, align=center},
+      lead/.style={draw=black!45, line width=0.35pt}
+    ]
+    % ---- scale: 0.561 cm per dollar, total $24.95 -> 14.0 cm ----
+    \def\y{0}
+    % segment: \seg{xstart}{width}{style}
+    \node[drv, anchor=south west, minimum width=9.93cm] at (0,\y) {Metered fare \ \$17.70};
+    \node[drv, anchor=south west, minimum width=1.40cm] at (9.93,\y) {};
+    \node[gov, anchor=south west, minimum width=0.28cm] at (11.33,\y) {};
+    \node[gov, anchor=south west, minimum width=0.56cm] at (11.61,\y) {};
+    \node[gov, anchor=south west, minimum width=1.40cm] at (12.17,\y) {};
+    \node[gov, anchor=south west, minimum width=0.42cm] at (13.57,\y) {};
+
+    % ---- brace ABOVE: the tip base ----
+    \draw[decorate, decoration={brace, amplitude=6pt}, stataorange, line width=0.9pt]
+      (0,0.95) -- (13.99,0.95);
+    \node[font=\small\bfseries, text=stataorange] at (7.0,1.62)
+      {The 20/25/30\,\% buttons multiply this entire width: \$24.95};
+
+    % ---- leader lines + labels BELOW for the narrow segments ----
+    \draw[lead] (10.63,0) -- (10.63,-0.75) -- (10.20,-0.75);
+    \node[lab, anchor=east] at (10.18,-0.75) {Rush-hour surcharge \$2.50};
+    \draw[lead] (11.47,0) -- (11.47,-1.30) -- (11.10,-1.30);
+    \node[lab, anchor=east] at (11.08,-1.30) {MTA State Surcharge \$0.50};
+    \draw[lead] (11.89,0) -- (11.89,-1.85) -- (11.52,-1.85);
+    \node[lab, anchor=east] at (11.50,-1.85) {Improvement Surcharge \$1.00};
+    \draw[lead] (12.87,0) -- (12.87,-2.40) -- (11.94,-2.40);
+    \node[lab, anchor=east] at (11.92,-2.40) {NYS Congestion Surcharge \$2.50};
+    \draw[lead] (13.78,0) -- (13.78,-2.95) -- (12.36,-2.95);
+    \node[lab, anchor=east] at (12.34,-2.95) {MTA CBD toll \$0.75};
+
+    % ---- braces BELOW: who keeps it ----
+    \draw[decorate, decoration={brace, mirror, amplitude=5pt}, statanavy, line width=0.8pt]
+      (0,-3.45) -- (11.33,-3.45);
+    \node[font=\scriptsize\bfseries, text=statanavy] at (5.66,-3.95)
+      {Driver keeps \$20.20};
+    \draw[decorate, decoration={brace, mirror, amplitude=5pt}, stataorange, line width=0.8pt]
+      (11.35,-3.45) -- (13.99,-3.45);
+    \node[font=\scriptsize\bfseries, text=stataorange, align=center] at (12.67,-4.10)
+      {Remitted to government\\[-1pt]\$4.75};
+  \end{tikzpicture}
+
+  \vspace{0.9em}
+
+  {\footnotesize
+  \begin{tabular}{@{}llll@{}}
+    \toprule
+    Component & Amount & When it applies & Who receives it \\
+    \midrule
+    Metered fare            & varies & always              & \textbf{Driver} \\
+    Rush-hour surcharge     & \$2.50 & weekdays 4--8pm     & \textbf{Driver} \\
+    Overnight surcharge     & \$1.00 & 8pm--6am            & \textbf{Driver} \\
+    \addlinespace
+    MTA State Surcharge     & \$0.50 & always              & MTA \\
+    Improvement Surcharge   & \$1.00 & always              & Taxi improvement fund \\
+    NYS Congestion Surcharge& \$2.50 & south of 96th St    & New York State \\
+    MTA CBD toll            & \$0.75 & south of 60th St    & MTA \\
+    Bridge and tunnel tolls & varies & by route            & Bridge authority \\
+    \bottomrule
+  \end{tabular}}
+
+  \floatnotes{Illustrative weekday 4:30pm pickup south of 60th Street in 2025;
+  the metered fare is the estimation sample's pre-4pm mean. Segment widths are
+  proportional to dollars. Navy components are fare revenue the driver keeps;
+  orange components are collected from the rider and remitted---the driver is
+  a collection agent for them and nets nothing. The rush-hour and overnight
+  surcharges are set by the TLC but are \emph{not} government revenue. Every
+  component, whoever receives it, sits inside the base the percentage buttons
+  multiply, which is the fact this paper measures: the \$4.75 of remitted fees
+  on this trip raises the suggested tip by \$0.95 at the 20 percent button, and
+  raises the tip actually paid by about \$0.52 at our estimated pass-through---
+  money that reaches the driver rather than the agency levying the fee.}
+\end{figure}

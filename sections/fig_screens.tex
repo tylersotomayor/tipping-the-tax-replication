@@ -1,0 +1,81 @@
+% Illustrative diagram: how a surcharge enters the tip base.
+% Institutional illustration only (permitted TikZ use); all empirical
+% figures remain StataBE-generated. Amounts use the estimation sample's
+% pre-4pm mean fare ($17.70) and the statutory fare stack.
+\begin{figure}[!htbp]
+  \centering
+  \singlespacing
+  \caption{\capttitle{The Mechanism on the Screen: One Trip, Four Minutes Apart}}
+  \label{fig:screens}
+  \begin{tikzpicture}[
+      font=\footnotesize,
+      screen/.style={rounded corners=8pt, draw=black!55, line width=0.7pt,
+        fill=black!2, minimum width=5.35cm, minimum height=6.15cm},
+      hdr/.style={font=\footnotesize\bfseries},
+      rline/.style={font=\scriptsize},
+      btn/.style={rounded corners=3pt, draw=statanavy, fill=statanavy!12,
+        minimum width=1.45cm, minimum height=0.86cm, align=center,
+        font=\scriptsize},
+      btnhot/.style={btn, draw=stataorange, fill=stataorange!18},
+      note/.style={font=\scriptsize\itshape, align=center}
+    ]
+    % ---------------- left screen: 3:58 PM ----------------
+    \node[screen] (L) at (0,0) {};
+    \node[hdr] at ($(L.north)+(0,-0.42)$) {Pickup 3:58\,PM};
+    \node[rline, anchor=west] at ($(L.north west)+(0.38,-1.05)$) {Metered fare};
+    \node[rline, anchor=east] at ($(L.north east)+(-0.38,-1.05)$) {\$17.70};
+    \node[rline, anchor=west] at ($(L.north west)+(0.38,-1.50)$) {MTA + improvement};
+    \node[rline, anchor=east] at ($(L.north east)+(-0.38,-1.50)$) {\$1.50};
+    \node[rline, anchor=west] at ($(L.north west)+(0.38,-1.95)$) {Congestion surcharge};
+    \node[rline, anchor=east] at ($(L.north east)+(-0.38,-1.95)$) {\$2.50};
+    \node[rline, anchor=west, text=black!45] at ($(L.north west)+(0.38,-2.40)$) {Rush-hour surcharge};
+    \node[rline, anchor=east, text=black!45] at ($(L.north east)+(-0.38,-2.40)$) {---};
+    \draw[black!45] ($(L.north west)+(0.38,-2.72)$) -- ($(L.north east)+(-0.38,-2.72)$);
+    \node[rline, anchor=west, font=\scriptsize\bfseries] at ($(L.north west)+(0.38,-3.05)$) {Total};
+    \node[rline, anchor=east, font=\scriptsize\bfseries] at ($(L.north east)+(-0.38,-3.05)$) {\$21.70};
+    \node[note, text=black!55] at ($(L.north)+(0,-3.72)$) {Add a tip?};
+    \node[btn] (L20) at ($(L.north)+(-1.72,-4.45)$) {20\%\\[-1pt]\textbf{\$4.34}};
+    \node[btn] (L25) at ($(L.north)+(0,-4.45)$) {25\%\\[-1pt]\textbf{\$5.43}};
+    \node[btn] (L30) at ($(L.north)+(1.72,-4.45)$) {30\%\\[-1pt]\textbf{\$6.51}};
+    \node[note, text=black!55] at ($(L.south)+(0,0.5)$) {No tip \quad Custom};
+    % ---------------- right screen: 4:02 PM ----------------
+    \node[screen] (R) at (7.6,0) {};
+    \node[hdr] at ($(R.north)+(0,-0.42)$) {Pickup 4:02\,PM};
+    \node[rline, anchor=west] at ($(R.north west)+(0.38,-1.05)$) {Metered fare};
+    \node[rline, anchor=east] at ($(R.north east)+(-0.38,-1.05)$) {\$17.70};
+    \node[rline, anchor=west] at ($(R.north west)+(0.38,-1.50)$) {MTA + improvement};
+    \node[rline, anchor=east] at ($(R.north east)+(-0.38,-1.50)$) {\$1.50};
+    \node[rline, anchor=west] at ($(R.north west)+(0.38,-1.95)$) {Congestion surcharge};
+    \node[rline, anchor=east] at ($(R.north east)+(-0.38,-1.95)$) {\$2.50};
+    \node[rline, anchor=west, text=stataorange, font=\scriptsize\bfseries] at ($(R.north west)+(0.38,-2.40)$) {Rush-hour surcharge};
+    \node[rline, anchor=east, text=stataorange, font=\scriptsize\bfseries] at ($(R.north east)+(-0.38,-2.40)$) {\$2.50};
+    \draw[black!45] ($(R.north west)+(0.38,-2.72)$) -- ($(R.north east)+(-0.38,-2.72)$);
+    \node[rline, anchor=west, font=\scriptsize\bfseries] at ($(R.north west)+(0.38,-3.05)$) {Total};
+    \node[rline, anchor=east, font=\scriptsize\bfseries] at ($(R.north east)+(-0.38,-3.05)$) {\$24.20};
+    \node[note, text=black!55] at ($(R.north)+(0,-3.72)$) {Add a tip?};
+    \node[btnhot] (R20) at ($(R.north)+(-1.72,-4.45)$) {20\%\\[-1pt]\textbf{\$4.84}};
+    \node[btnhot] (R25) at ($(R.north)+(0,-4.45)$) {25\%\\[-1pt]\textbf{\$6.05}};
+    \node[btnhot] (R30) at ($(R.north)+(1.72,-4.45)$) {30\%\\[-1pt]\textbf{\$7.26}};
+    \node[note, text=black!55] at ($(R.south)+(0,0.5)$) {No tip \quad Custom};
+    % ---------------- annotations ----------------
+    \draw[-{Stealth[length=2.6mm]}, line width=0.9pt, stataorange]
+      ($(L.east)+(0.12,0.35)$) -- ($(R.west)+(-0.12,0.35)$)
+      node[midway, above, note, text=stataorange, text width=1.9cm]
+      {4:00\,PM passes};
+    \draw[decorate, decoration={brace, mirror, amplitude=5pt}, stataorange, line width=0.8pt]
+      ($(R20.south west)+(-0.06,-1.75)$) -- ($(R30.south east)+(0.06,-1.75)$);
+    \node[note, text=stataorange, text width=4.6cm] at ($(R.south)+(0,-0.5)$)
+      {each button rises by its percentage of the \$2.50 surcharge};
+  \end{tikzpicture}
+  \floatnotes{Illustration of the identifying variation, using the
+  estimation sample's pre-4pm mean metered fare. The two screens show the
+  same trip picked up four minutes apart on a weekday. At 4:00\,PM the
+  \$2.50 rush-hour surcharge (in orange) enters the total, and because
+  the suggested tips are percentages of that surcharge-inclusive total,
+  every button rises with it---the 20 percent button by \$0.50. Nothing
+  about the ride, the driver, or the rider's intended generosity has
+  changed. The paper measures how much of the surcharge reaches the
+  driver through this channel: about fifteen cents per surcharge dollar,
+  averaged over riders who press a button, tip a custom amount, or skip
+  the tip.}
+\end{figure}

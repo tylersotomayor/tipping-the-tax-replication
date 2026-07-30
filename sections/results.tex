@@ -1,0 +1,652 @@
+\section{Results}
+\label{sec:results}
+
+\subsection{How to read the estimates}
+\label{sec:results-read}
+Three numbers appear throughout this section, and they answer different
+questions.
+
+\emph{The reduced form (RF)} is the raw causal quantity: how many
+dollars the average credit-card tip changes at the cutoff, holding the
+non-surcharge fare constant. It is the coefficient a rider would
+recognize---``tips went up 29 cents at 4:00pm.''
+
+\emph{ITT per statutory dollar} divides the reduced form by the
+\emph{statutory} surcharge change (\$2.50, \$1.00, and so on). Because
+the statute is a known constant, no first stage is estimated, no
+exclusion restriction is invoked, and the standard error needs no
+adjustment. It answers the policy question: for each dollar the rule
+adds, how much do tips rise on average across \emph{all} standard-rate
+trips---including any trip the meter failed to charge? It is the
+design-based number, and the one we headline.
+
+\emph{$\rho^{IV}$} instruments the measured surcharge with the cutoff
+indicator and estimates both stages jointly, so its standard error
+accounts for the first stage being estimated rather than known. With a
+continuous treatment it is an average causal response
+\parencite{angrist1995two}, and it is causal only under an exclusion
+restriction: that the entire discontinuity in the measured surcharge
+field is rush surcharge. Table~\ref{tab:composition} is why that
+assumption cannot be verified---the field is contaminated on both
+sides of every cutoff---so we read $\rho^{IV}$ as the behavioral rate
+among trips whose recorded surcharge moved, corroborated externally by
+the mechanical benchmark (Appendix~\ref{app:robustness}). Which scaling
+matters depends on the question: pricing a fee \emph{before} enactment
+uses ITT per statutory dollar; aggregating the transfer from fees
+already collected uses $\rho^{IV}$, because collections are recorded
+dollars. ITT sits below $\rho^{IV}$ exactly insofar as some trips'
+recorded surcharge does not move at the cutoff.
+
+One further habit of reading: every specification conditions on the
+non-surcharge base (the metered fare and fixed fees). Section
+\ref{sec:results-balance} shows why this is not optional.
+
+\subsection{What else changes at 4:00pm: balance}
+\label{sec:results-balance}
+Table~\ref{tab:balance} reports discontinuities in trip characteristics
+at the weekday 4:00pm cutoff. The honest news first: trips themselves
+change. The metered fare jumps \$0.49, trips get 0.58 miles shorter and
+0.69 minutes slower---the signature of rush-hour congestion. Continuity
+of trip characteristics fails, which is why we describe the design as a
+\emph{fare-conditioned} within-day discontinuity rather than a
+conventional regression discontinuity: identification leans on
+conditioning on the fare, and on the weekend contrast, not on an
+assumption that nothing else moves at 4:00pm.
+
+What does \emph{not} change is the composition of payers: the card share
+moves 0.2 percentage points and the vendor mix 0.03 points. The people
+tipping on either side of the cutoff are paying the same way, through
+the same machines.
+
+\begin{table}[!htbp]
+  \centering
+  \singlespacing
+  \caption{\capttitle{Balance at the 4:00pm Cutoff}}
+  \label{tab:balance}
+  \small
+  \begin{tabular}{@{}lccc@{}}
+    \toprule
+    Trip characteristic & Pre-cutoff mean & Jump at 4:00pm & (SE) \\
+    \midrule
+    \input output/tables/tab-balance.tex
+    \bottomrule
+  \end{tabular}
+  \floatnotes{Weekday standard-rate card trips, \$2.50 regime, bandwidth
+  $\pm 60$ minutes, local linear, clustered by date. The fare, distance,
+  and duration jumps are why every estimate in this paper conditions on
+  the non-surcharge base; the null card-share and vendor-share jumps are
+  why payment composition is not a confound. \sym{***}, \sym{**},
+  \sym{*}: significance at 1, 5, 10 percent.}
+\end{table}
+
+\subsection{The main estimates}
+Figure~\ref{fig:4pm} shows the raw pattern the estimates formalize: tips
+step up at 4:00pm in both regimes, by visibly more when the surcharge is
+larger, then drift down through the evening as post-rush trips shorten
+and cheapen---the fare dynamics the specification conditions away.
+Figure~\ref{fig:wewd} shows the same clock on weekends, where no
+surcharge exists: drift without a step.
+
+\begin{figure}[!htbp]
+  \centering
+  \singlespacing
+  \caption{\capttitle{Credit-Card Tips by Minute Around 4:00pm}}
+  \label{fig:4pm}
+  \includegraphics[width=0.86\textwidth]{fig-4pm.pdf}
+  \floatnotes{Standard-rate card trips, weekdays excluding holidays,
+  trip-weighted means by minute of pickup. Navy: \$1.00 regime. Orange:
+  \$2.50 regime. The step at the dashed line is the treatment; the
+  gradual decline afterward is rush-hour fare dynamics, absorbed by the
+  fare control in estimation.}
+\end{figure}
+
+\begin{figure}[!htbp]
+  \centering
+  \singlespacing
+  \caption{\capttitle{Weekdays Versus Weekends at the Same Clock}}
+  \label{fig:wewd}
+  \includegraphics[width=0.80\textwidth]{fig-wewd.pdf}
+  \floatnotes{Mean credit-card tips by minute around 4:00pm, \$2.50
+  regime, standard-rate card trips. Weekdays (navy) receive the rush
+  surcharge from 4:00pm; weekends (teal) never do.}
+\end{figure}
+
+Table~\ref{tab:main3} is the paper's central table: the same
+specification at all six within-day surcharge changes, with the two
+weekend placebos beneath. Reading across the top row: at the weekday
+4:00pm cutoff in the \$2.50 regime, tips rise \$0.292 (SE \$0.005); per
+statutory dollar that is $0.117$; instrumenting the measured surcharge,
+$\rho^{IV} = 0.150$ (SE $0.002$). Reading down the $\rho^{IV}$ column is
+the paper's result: $0.150$, $0.141$, $0.134$, $0.134$, $0.122$,
+$0.128$. Two doses, two clocks, both directions, one parameter near
+$0.14$. The placebo rows show what the same machinery finds when no
+surcharge changes: \$0.024 and $-$\$0.002.
+
+\begin{table}[!htbp]
+  \centering
+  \singlespacing
+  \caption{\capttitle{Pass-Through at Six Surcharge Changes}}
+  \label{tab:main3}
+  \footnotesize
+  \setlength{\tabcolsep}{4.5pt}
+  \begin{tabular}{@{}lccccc@{}}
+    \toprule
+    & \multicolumn{2}{c}{Reduced form (USD)} & ITT per & \multicolumn{2}{c}{$\rho^{IV}$} \\
+    \cmidrule(lr){2-3} \cmidrule(lr){5-6}
+    Surcharge change & Tip step & (SE) & statutory \$ & Estimate & (SE) \\
+    \midrule
+    \input output/tables/tab-main3.tex
+    \bottomrule
+  \end{tabular}
+  \floatnotes{Standard-rate card trips, September 2021--September 2024,
+  bandwidth $\pm 60$ minutes, local linear in pickup minute, conditioning
+  on the non-surcharge base, weighted by card trips, clustered by date.
+  ITT divides the reduced form by the statutory dose (a known constant,
+  so its SE is the RF's SE rescaled). $\rho^{IV}$ instruments the
+  measured card-trip surcharge with the cutoff indicator; its SE reflects
+  joint estimation of both stages. Weekend placebo rows apply the
+  identical specification where no surcharge changes. \sym{***},
+  \sym{**}, \sym{*}: significance at 1, 5, 10 percent.}
+\end{table}
+
+Figure~\ref{fig:coefplot} is the replication argument in one frame:
+every locked change, expressed per statutory dollar, on one axis. The
+six primary changes span $0.090$--$0.117$ with a precision-weighted
+mean of $0.108$ (SE $0.001$). The 6:00am weekend changes sit at
+$0.126$ and $0.155$ with wide intervals. The JFK flat-fare surcharge
+(squares; Section~\ref{sec:results-controls}) contributes the \$4.50
+and \$5.00 doses at $0.133$ and $0.149$. The 2025 congestion toll,
+estimated with no clock at all, lands at $0.107$. The weekend placebos
+sit at zero, and the two 6:00am weekday failures appear in grey rather
+than disappearing (Section~\ref{sec:results-6am}).
+
+\begin{figure}[!htbp]
+  \centering
+  \singlespacing
+  \caption{\capttitle{One Parameter: Pass-Through per Statutory Dollar
+  at Every Locked Change}}
+  \label{fig:coefplot}
+  \includegraphics[width=0.94\textwidth]{fig-coefplot.pdf}
+  \floatnotes{Intention-to-treat tip response per statutory surcharge
+  dollar, with 95 percent confidence intervals; specification of
+  Table~\ref{tab:main3} throughout. Navy circles: within-day surcharge
+  changes on the standard-rate sample. Navy squares: the JFK flat-fare
+  surcharge (Section~\ref{sec:results-controls}), whose higher ITT
+  reflects near-complete treatment delivery (94 versus 78 percent of
+  the statutory dose), not different behavior. Grey circles: the 6:00am
+  weekday changes, where the dawn compositional shift breaks the fare
+  conditioning (Section~\ref{sec:results-6am}). Teal diamond: the
+  January 2025 congestion toll, estimated from the spatial
+  origin--destination design with no clock involved, divided by the
+  \$0.75 statutory toll. Hollow circles: weekend placebos at 4:00pm,
+  scaled by the matched regime's dose. The dashed line marks the
+  precision-weighted mean of the six primary standard-rate changes,
+  $0.108$ (SE $0.001$). Minimum detectable effects (2.8 $\times$ SE)
+  for the six primary changes range from $0.005$ to $0.039$ per
+  statutory dollar.}
+\end{figure}
+
+Estimated as an explicit difference-in-discontinuities---the weekday
+step minus the weekend step at the same clock
+\parencite{grembi2016difference}, the specification of
+equation~\eqref{eq:didisc}---the effect is \$0.271 (SE \$0.008) in the
+\$2.50 regime and \$0.105 (\$0.008) in the \$1.00 regime: $0.108$ and
+$0.105$ per statutory dollar. Dropping the fare control entirely moves
+these to $0.120$ and $0.092$. The conclusion does not lean on the
+functional form of the fare adjustment; the weekend difference carries
+it.
+
+The fuzzy version of the same design reports all three quantities of
+the standard presentation. The first stage---the weekday--weekend
+difference in the \emph{surcharge} discontinuity---is \$1.934 (SE
+\$0.011) in the \$2.50 regime; the reduced form is the \$0.271 above;
+and the just-identified 2SLS coefficient, instrumenting the measured
+surcharge with the cutoff-by-weekday interaction, is
+$\hat{\tau} = 0.140$ (SE $0.004$). In the \$1.00 regime the same three
+numbers are \$0.713 (\$0.007), \$0.105 (\$0.008), and $0.147$
+($0.011$): the fuzzy estimate is dose-stable, and it sits inside the
+$\rho^{IV}$ family, as it must, since it differs from the single-cutoff
+IV only in differencing the weekend counterfactual through both
+stages.
+
+\subsection{A working-day control, and a \$5 dose on a fare that cannot move}
+\label{sec:results-controls}
+Two further designs close the remaining doors on the 4:00pm result, and
+both were run after the main estimates as out-of-sample checks.
+
+\emph{Holidays.} Legal holidays are calendar weekdays on which the rush
+surcharge does not apply---a working-day counterfactual that weekends
+cannot supply. The federal holiday list is not the TLC list, so we
+classify each holiday by its own first stage: the traditional holidays
+are cleanly exempt, one observed date is partially charged and dropped,
+and Juneteenth is \emph{fully charged} in all three years (first stages
+of \$0.90, \$2.29, and \$2.28 against statutory doses of \$1.00 and
+\$2.50)---the meters do not observe the newest federal holiday.
+Differencing the weekday step against the exempt holidays gives $0.096$
+per statutory dollar in the \$2.50 regime and $0.095$ in the \$1.00
+regime (wild-cluster bootstrap $p < 10^{-4}$ and $p = 0.035$; holiday
+clusters are few, so the bootstrap is the relevant inference)---the
+same answer the weekend difference gives. And Juneteenth supplies the
+converse check: a day with holiday \emph{composition} but the full
+\emph{dose} shows a tip step of \$0.241 (SE \$0.067), $0.096$ per
+statutory dollar. Composition off, dose on: the step follows the dose.
+
+\emph{JFK flat fares.} The analysis plan quarantines special rate codes
+from the main sample; analysed separately, the JFK flat fare is the
+cleanest design in the paper. Its rush-hour surcharge is \$4.50 in the
+early regime and \$5.00 after December 2022---twice the largest dose in
+the main design---and it sits on a \emph{flat} fare, so the metered fare
+cannot jump at 4:00pm by construction: the confound that motivates the
+fare conditioning everywhere else does not exist here. The estimates
+behave accordingly. The tip step is \$0.745 (SE \$0.052) at the \$5.00
+dose and \$0.596 (\$0.052) at \$4.50---$0.149$ and $0.133$ per
+statutory dollar---and dropping every control changes the answer by
+three hundredths of a cent ($0.1486$ against $0.1489$). Weekend
+placebos are null on both sides (tip $-\$0.03$ and $-\$0.05$, first
+stages $-0.01$ and $-0.04$). Per \emph{recorded} surcharge dollar the
+JFK estimates are $0.159$ and $0.150$, on top of the main design's
+$\rho^{IV}$; the higher ITT relative to the pooled $0.108$ is treatment
+delivery, not behavior---JFK meters deliver 94 percent of the statutory
+dose against 78 percent on standard rates. The mechanical benchmark
+tells the same story at five times the stakes: the pre-4:00pm JFK tip
+rate of $17.5$ percent predicts a step of \$0.875 under complete
+pass-through, and the estimate is 85 percent of it, the same fraction
+as the main design. Riders tipping on an \$85 airport fare pass a \$5
+surcharge into the tip at the same rate riders tipping on a \$25
+Manhattan fare pass \$2.50.
+
+Interpreting the magnitude: the average tip in this sample is 17--18
+percent of the base. If riders treated a surcharge dollar exactly like a
+fare dollar, complete default-mediated pass-through would put $\rho$
+near $0.17$; if riders fully distinguished the surcharge---tipping on
+the service, not the stack---$\rho$ would be $0$. The estimate of
+$0.14$--$0.15$ says riders pass surcharges into tips at about
+four-fifths of the rate they tip the fare itself: not total blindness to
+the base, but close.
+
+\subsection{Robustness}
+Table~\ref{tab:bw3} shows $\rho^{IV}$ across bandwidths of 30 to 90
+minutes ($0.147$--$0.156$) and donuts excluding 3, 5, or 10 minutes
+around the cutoff ($0.148$--$0.152$). Because the surcharge is assessed
+on the pickup time, the donut is not needed for assignment reasons; we
+report it because cells adjacent to the cutoff mix minutes unevenly
+within trips, and it makes no difference. Placebo cutoffs at 3:15pm and
+5:00pm give tip-side effects of $-$\$0.0003 (SE \$0.007) and $-$\$0.008
+(SE \$0.007)---both sides of the placebo, first stage and tip, are now
+reported and both are null. A permutation over 60 candidate cutoffs,
+each estimated at the same $\pm 30$ minute bandwidth as the true cutoff
+and drawn only from windows that never cross 4:00pm, finds none with an
+effect as large as the true cutoff's, and a wild cluster bootstrap on
+the corrected reduced form rejects zero at $p < 10^{-6}$. Minimum
+detectable effects---2.8 times the standard error, the analysis plan's
+locked criterion---range from $0.005$ to $0.039$ per statutory dollar
+across the six primary changes, so even the least-powered design could
+detect an effect one-third the size of the pooled estimate.
+
+\begin{table}[!htbp]
+  \centering
+  \singlespacing
+  \caption{\capttitle{Bandwidth and Donut Robustness, $\rho^{IV}$}}
+  \label{tab:bw3}
+  \small
+  \begin{tabular}{@{}lcc@{}}
+    \toprule
+    Specification & $\rho^{IV}$ & (SE) \\
+    \midrule
+    \input output/tables/tab-bw3.tex
+    \bottomrule
+  \end{tabular}
+  \floatnotes{Weekday 4:00pm cutoff, \$2.50 regime, corrected
+  specification, clustered by date. \sym{***}, \sym{**}, \sym{*}:
+  significance at 1, 5, 10 percent.}
+\end{table}
+
+\subsection{The third clock: 6:00am, and where the design breaks}
+\label{sec:results-6am}
+The analysis plan locks a third clock. At 6:00am the overnight surcharge
+\emph{ends}, so the statutory step is downward---\$0.50 before December
+2022, \$1.00 after---and because the overnight surcharge applies on
+every day of the week, there is no weekend placebo at this cutoff. That
+absence turns out to be informative.
+
+On weekends the estimates behave: $\rho^{IV} = 0.175$ (SE $0.041$) at
+the \$1.00 dose and $0.165$ ($0.088$) at \$0.50, a little above the
+main cluster but within its neighborhood. On weekdays they do not: the
+\$1.00 dose gives $0.016$ ($0.018$) and the \$0.50 dose gives $-0.143$
+($0.037$)---null and wrong-signed respectively.
+
+We report this because the plan locked it, and because the pattern
+diagnoses itself. The same clock and the same statutory dose produce
+sensible estimates on weekends and broken ones on weekdays. What differs
+between them is what happens at dawn on a working day: the pickup mix
+shifts sharply toward airport-bound and commuter trips, which are longer
+and dearer in a way that conditioning on the mean non-surcharge fare
+does not absorb. On weekends that shift is absent and the design
+recovers the same parameter as the 4pm and 8pm cutoffs. The honest
+reading is that this design identifies pass-through wherever rider
+composition evolves smoothly through the cutoff, and that the 6:00am
+weekday window is the one place in our data where it plainly does not.
+We therefore exclude the two weekday 6am estimates from the headline
+range and report them here rather than in Table~\ref{tab:main3}.
+
+\subsection{Do riders undo it?}
+At the 4:00pm cutoff the share of tips exactly at a default button falls
+0.85 percentage points, zero-tipping rises 0.15 points, and card use
+\emph{rises} 0.19 points. Against a mechanical benchmark---the surcharge
+step times the prevailing 17.4 percent tip rate---the estimated
+pass-through is about nine-tenths of complete. Riders offset almost none
+of the base change.
+
+\subsection{The button is not the mechanism: vendor evidence}
+\label{sec:results-vendor}
+The two payment vendors offer a built-in test of \emph{how} the
+pass-through operates, and it refutes our own initial hypothesis. If
+pass-through worked purely through riders pressing default buttons, it
+should scale with button use: Vendor 1's riders take an exact default on
+19 percent of tips, Vendor 2's on 65 percent, so $\rho$ should differ
+by a factor of three. It does not. Estimated separately on the same 4pm
+design, $\rho^{IV} = 0.147$ (SE $0.005$) at Vendor 1 and $0.152$
+($0.003$) at Vendor 2---statistically indistinguishable. Riders who
+type custom amounts evidently compute their percentages on the same
+fee-inclusive total the screen displays. The operative mechanism is the
+\emph{base the interface presents}, not the button that presents it,
+which broadens the result: redesigning buttons would not undo the
+fiscal channel; redesigning the base would. Figure~\ref{fig:vendor}
+shows the contrast in one frame: adherence bars that differ by a factor
+of 3.5, pass-through dots that coincide.
+
+\begin{figure}[!htbp]
+  \centering
+  \singlespacing
+  \caption{\capttitle{Same Pass-Through, Very Different Button Use}}
+  \label{fig:vendor}
+  \includegraphics[width=0.76\textwidth]{fig-vendor.pdf}
+  \floatnotes{Bars (right axis): share of card tips exactly at a
+  default button, pre-cutoff, by payment vendor. Dots (left axis, 95
+  percent CIs): $\rho^{IV}$ from the weekday 4:00pm design estimated
+  separately by vendor, \$2.50 regime. If pass-through operated only
+  through button presses, the dots would differ as much as the bars.}
+\end{figure}
+
+\subsection{Who passes it through}
+\label{sec:results-decomp}
+The mechanism has a sharper test than vendor comparisons: classify every
+tip by \emph{how it was chosen}, and ask whose tips move at the cutoff.
+We split card tips into four mutually exclusive types---exactly a
+20/25/30 percent button, a whole-dollar amount, other custom amounts,
+and zero---and estimate the weekday--weekend difference-in-
+discontinuities separately for each type's mean tip and its share of
+trips (Table~\ref{tab:decomp}).
+
+If pass-through were mechanical rounding---riders nudging totals to the
+nearest dollar---whole-dollar tips would carry it. They do not. In the
+\$2.50 regime, button tips rise \$0.421 (SE \$0.011) and custom
+non-round tips \$0.247 (\$0.027), while whole-dollar tips move \$0.043
+(\$0.025). The dose comparison is more damning still: when the statutory
+dose was \$1.00, button tips rose \$0.182---the response scales
+one-for-one with the legislated dose---while the whole-dollar response
+is \$0.04 in \emph{both} regimes, insensitive to a 150 percent dose
+change. Riders who think in percentages of the displayed total pass the
+surcharge through; riders who think in round dollar amounts are inert.
+And nobody switches type at the cutoff: every share moves by less than
+half a percentage point. The aggregate offset from complete mechanical
+pass-through is not partial attention spread thinly---it is the
+whole-dollar fifth of riders sitting still.
+
+\begin{table}[!htbp]
+  \centering
+  \singlespacing
+  \caption{\capttitle{Who Passes It Through: DiDisc by Tipping Type}}
+  \label{tab:decomp}
+  \small
+  \begin{tabular}{@{}lccc@{}}
+    \toprule
+    & DiDisc & (SE) & Per statutory \$ \\
+    \midrule
+    \input output/tables/tab-decomp.tex
+    \bottomrule
+  \end{tabular}
+  \floatnotes{Weekday--weekend difference-in-discontinuities at 4:00pm,
+  \$2.50 regime, fare-conditioned, clustered by date; tip rows weight by
+  the category's own trips, share rows by card trips. Types are mutually
+  exclusive: button = tip equals 20/25/30 percent of the pre-tip total
+  to within half a cent; whole-dollar = round-dollar tips not at a
+  button. In the \$1.00 regime the button response is \$0.182 (0.009)
+  and the whole-dollar response \$0.043 (0.027): button pass-through
+  scales with the dose, whole-dollar tipping is inert at both doses.}
+\end{table}
+
+\subsection{Demand: riders do not dodge, and barely notice}
+\label{sec:results-demand}
+Three further margins complete the behavioral picture, and all three are
+near-zero in the same direction.
+
+\emph{No retiming.} If riders timed hails to dodge the surcharge, pickup
+density would pile up before 4:00pm and hollow out after. It does not:
+the share of window pickups per minute is essentially identical across
+the cutoff (ten-minute ratio $0.997$ at the \$1.00 dose, $0.987$ at
+\$2.50; Figure~\ref{fig:density4pm}). A 150 percent increase in the fee
+produced a one percent change in timing. This doubles as the design's
+sorting diagnostic: the running variable is not manipulated.
+
+\emph{No demand response at the toll.} Log eligible trips at the January
+2025 congestion boundary move $-1.0$ percent (SE $0.9$)---statistically
+and economically indistinguishable from zero for a \$0.75 fee on a
+\$27 ride. Combined with the tip pass-through, the driver-side ledger of
+the toll is striking: drivers gain roughly \$2.2 million a year in
+induced tips on eligible card trips and lose no detectable fare revenue.
+At the point estimate, the congestion toll made drivers net
+\emph{better} off; the confidence interval cannot exclude a net loss if
+the true demand decline sits at its lower bound.
+
+\emph{No reaction to a 150 percent surcharge increase.} On December 19,
+2022 the rush surcharge jumped from \$1.00 to \$2.50 overnight. If
+riders monitored their totals, percentage tipping should have dropped by
+about $1.1$ points in the rush window (the fall required to keep tip
+dollars fixed). Netting seasonal drift with the surcharge-free pre-rush
+window, the tip rate fell $0.22$ points (SE $0.07$)---riders undid about
+a fifth of the increase and passed the rest through
+(Figure~\ref{fig:dec22}). That one-fifth offset independently implies
+pass-through of roughly four-fifths of the prevailing tip rate, which is
+precisely where the clock designs put $\rho$. And the offset is not the
+start of slow learning: Figure~\ref{fig:lp-dec22} traces the response
+horizon by horizon, local-projection style, for six months after the
+repricing. The path settles immediately at about $-0.2$ points and
+never drifts toward the $-1.1$-point full-attention benchmark. Riders
+who were going to notice noticed at once; the rest never did.
+
+\begin{figure}[!htbp]
+  \centering
+  \singlespacing
+  \caption{\capttitle{No Delayed Learning: The Adaptation Path After December 2022}}
+  \label{fig:lp-dec22}
+  \includegraphics[width=0.82\textwidth]{fig-lp-dec22.pdf}
+  \floatnotes{Weekly horizon-by-horizon responses of the rush-window
+  tip rate, netted against the surcharge-free pre-rush window and
+  measured relative to the 26-week pre-period mean, for 26 weeks after
+  the \$1.00-to-\$2.50 repricing. The shaded band is a 95 percent
+  interval from daily variation within each week. The maroon line marks
+  the response that would keep tip dollars unchanged; zero marks full
+  pass-through.}
+\end{figure}
+
+\begin{figure}[!htbp]
+  \centering
+  \singlespacing
+  \caption{\capttitle{Pickup Density Through the 4:00pm Cutoff}}
+  \label{fig:density4pm}
+  \includegraphics[width=0.78\textwidth]{fig-density4pm.pdf}
+  \floatnotes{Each date's share of window pickups in each minute,
+  averaged by minute, weekdays. Smooth density through the cutoff means
+  riders do not retime hails around the surcharge and the running
+  variable is unmanipulated.}
+\end{figure}
+
+\begin{figure}[!htbp]
+  \centering
+  \singlespacing
+  \caption{\capttitle{The December 2022 Surcharge Increase: Did Anyone Notice?}}
+  \label{fig:dec22}
+  \includegraphics[width=0.80\textwidth]{fig-dec22.pdf}
+  \floatnotes{Weekly mean credit-card tips as a share of the pre-tip
+  total, weekdays, in the rush window (navy; surcharge rose \$1.00 to
+  \$2.50 at the dashed line) and the surcharge-free pre-rush window
+  (teal). Keeping tip dollars fixed would require the navy series to
+  fall about 1.1 points relative to teal; it falls 0.22.}
+\end{figure}
+
+\subsection{Transportability: congestion fees}
+\label{sec:results-fee}
+The clock designs identify $\rho$ from surcharges that switch on a
+schedule; congestion policy switches them on at boundaries in space.
+The re-estimated design assigns treatment by the statutory rule---a trip
+is eligible if its pickup \emph{or} dropoff lies in the fee zone---on
+standard-rate card trips, and reports joint pre-trend tests. At the
+January 2025 toll the origin--destination design gives a pooled tip
+effect of \$0.080 (SE \$0.005) against a first stage of \$0.602 of
+fee per card trip: $\rho = 0.133$ (SE $0.009$), within a cent of the
+clock designs. Correcting the eligibility matters exactly as
+contamination predicts: the old pickup-only assignment gave \$0.058,
+because treated dropoffs sat in its control group, and its apparent
+post-event fade disappears under the correct rule---post coefficients
+are stable at \$0.041--\$0.052 across all six months. Two refinements
+discipline the pre-period. First, seasonality: December's holiday
+tipping makes any single reference month misleading, so we add
+treated-by-calendar-month fixed effects, identified from a second
+pre-year (2023), and measure post effects against all pre months. The
+effects strengthen and stabilize---\$0.074 to \$0.089 in every one of
+the six post months ($t > 8$; Figure~\ref{fig:es-fee25})---but a joint
+Wald test on the 2024 pre-year against 2023 still rejects
+($p = 0.0007$): treated zones genuinely drifted during 2024's recovery,
+beyond seasonality. Second,
+and more decisively, the eligibility rule itself supplies a
+\emph{continuous dose}: the post-period share of each pickup--dropoff
+pair's trips actually charged the fee, which nets out the exempt
+highway corridors no geometric rule can see. Conditioning on the
+non-surcharge base---the same correction the clock designs
+required---the dose design yields a monotone staircase: pairs charged
+up to half the time show \$0.007 (SE \$0.011), pairs charged 50--90
+percent show \$0.061 ($0.015$), and pairs charged above 90 percent
+show \$0.085 ($0.013$), for an implied $\rho = 0.121$. Effects that
+rise step-for-step with measured treatment intensity
+(Figure~\ref{fig:dose}) are difficult to attribute to zone-level
+drift, which would have to reproduce the dose gradient by coincidence.
+
+\begin{figure}[!htbp]
+  \centering
+  \singlespacing
+  \caption{\capttitle{The Dose Staircase: Tip Effects Rise with Charging Intensity}}
+  \label{fig:dose}
+  \includegraphics[width=0.76\textwidth]{fig-dose.pdf}
+  \floatnotes{Post-toll tip effects by the share of each
+  pickup--dropoff pair's trips actually charged the 2025 congestion
+  fee (measured from post-period fee incidence), relative to pairs
+  charged up to 10 percent of the time. Fare-conditioned, OD-pair and
+  month fixed effects, clustered by pickup zone; bars are 95 percent
+  confidence intervals.}
+\end{figure} Stacking both fee adoptions into one design---each cohort with its own
+unit and time effects, tips regressed on the observed fee instrumented
+by eligibility-times-post, fare-conditioned throughout---yields the
+\emph{average rollout effect} of putting a fee on the meter:
+\[
+  \bar{\rho}_{\text{rollout}} = 0.163 \ (\text{SE } 0.021).
+\]
+Within the same specification the cohorts are $0.171$ ($0.033$) for
+2019 and $0.138$ ($0.007$) for 2025, statistically indistinguishable
+($p = 0.36$). The uniform fare conditioning also resolves this
+section's one outlier: the earlier 2019 estimate of $0.218$ carried
+the same omitted-fare bias the clock designs taught us to remove, and
+falls into line once treated identically. We still keep the spatial
+evidence in a corroborating role---the binary event studies do not
+pass a strict pre-trend test and we say so---while noting that the
+dose gradient and the pooled rollout estimate land within two cents of
+the clock designs.
+
+\begin{table}[!htbp]
+  \centering
+  \singlespacing
+  \caption{\capttitle{Pass-Through at Congestion Fees: The Initial
+  Pickup-Only Design}}
+  \label{tab:fee}
+  \small
+  \begin{tabular}{@{}lcccc@{}}
+    \toprule
+    Policy & First stage & Tip effect & (SE) & $\hat{\rho}$ \\
+    \midrule
+    \input output/tables/tab-fee.tex
+    \bottomrule
+  \end{tabular}
+  \floatnotes{Zone-by-fare-bin difference-in-differences, zone-fare and
+  month fixed effects, clustered by pickup zone. Windows:
+  2018m7--2019m12 and 2024m1--2025m6. \emph{This is the initial
+  pickup-only specification and is superseded}: it assigns treatment by
+  pickup zone alone, so trips whose dropoff was in the fee zone sit in
+  its control group. It is retained to show what the contamination does.
+  The preferred estimates---origin--destination eligibility, fare
+  conditioning, and the continuous dose---are reported in the text and
+  give $\rho$ of $0.133$, $0.121$, and $0.163$ rather than the $0.146$
+  and $0.254$ shown here.}
+\end{table}
+
+\begin{figure}[!htbp]
+  \centering
+  \singlespacing
+  \caption{\capttitle{Event Study: The January 2025 Congestion Toll}}
+  \label{fig:es-fee25}
+  \includegraphics[width=0.78\textwidth]{fig-es-fee25.pdf}
+  \floatnotes{Corrected design: origin--destination eligibility with
+  treated-by-calendar-month fixed effects identified from calendar 2023;
+  the twelve 2024 pre-months are shown as deviations from that seasonal
+  baseline, and post coefficients are stable at \$0.074--\$0.089 with
+  $t > 8$ throughout. The pre-period looks flat, and no single 2024
+  coefficient is large---but a joint Wald test on all twelve rejects
+  ($p = 0.0007$): treated routes drifted slightly during 2024's
+  recovery. That is why the spatial evidence is read as corroboration,
+  anchored by the dose gradient of Figure~\ref{fig:dose}, rather than
+  as the headline. Bars: 95 percent confidence intervals.}
+\end{figure}
+
+\subsection{The size and geography of the transfer}
+At $\rho = 0.15$, the \$127.2 million of 2019 congestion surcharges on
+card trips implies roughly \$18.7 million of additional gratuities, and
+the 2025 toll's \$17.4 million annualized implies about \$2.2 million a
+year. Figure~\ref{fig:map-causal} is the spatial design's summary exhibit:
+the per-zone, fare-conditioned change in tips---measured relative to
+never-eligible zones---estimated at a placebo date (July 2024) and at
+the real toll (January 2025), with zones muted unless significant at
+five percent. At the placebo date, 6 percent of non-CBD zones and 10
+percent of CBD zones show anything, scattered at random. At the real
+date, \textbf{82 percent of congestion-district zones turn
+significantly positive} (mean $+\$0.084$) against 18 percent
+elsewhere: the tolled district materializes from the estimates alone,
+with no boundary drawn. Figure~\ref{fig:map} then maps where the
+resulting transfer is generated:
+congestion-district pickup zones average \$46{,}000 of induced tips a
+year each, against \$900 outside, so the policy boundary is visible in
+the map without being drawn.
+
+\begin{figure}[!htbp]
+  \centering
+  \singlespacing
+  \caption{\capttitle{The Toll Appears in the Map: Placebo Versus Real Date}}
+  \label{fig:map-causal}
+  \includegraphics[width=0.98\textwidth]{fig-map-causal.pdf}
+  \floatnotes{Per-pickup-zone change in mean credit-card tips,
+  conditioned on fare bins and dropoff eligibility and measured relative
+  to never-eligible zones, at a placebo split (July 2024, left) and the
+  actual toll (January 2025, right). Blues: significant increases
+  (darker larger); orange: significant decreases; grey: no significant
+  change or insufficient trips. The congestion district emerges only at
+  the real date.}
+\end{figure}
+
+\begin{figure}[!htbp]
+  \centering
+  \singlespacing
+  \caption{\capttitle{Where the Transfer Is Generated}}
+  \label{fig:map}
+  \includegraphics[width=0.80\textwidth]{fig-map.pdf}
+  \floatnotes{Annualized additional tip dollars induced by the 2025
+  congestion toll, by pickup taxi zone: fee dollars charged on card
+  trips times the estimated pass-through. Darker = larger; grey = none.}
+\end{figure}

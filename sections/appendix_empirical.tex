@@ -1,0 +1,50 @@
+\section{Data Appendix}
+\label{app:empirical}
+
+\subsection{Sources}
+All trip data come from the NYC Taxi and Limousine Commission's monthly
+yellow-taxi parquet files \parencite{tlc2026trip}, which cover the
+universe of metered yellow-cab trips. Taxi-zone geometry comes from the
+TLC's published shapefile. No restricted or proprietary data are used;
+the entire analysis is reproducible from public sources with the code in
+this repository.
+
+\subsection{Cell construction}
+Two builds produce the estimation inputs. The first streams each monthly
+file and aggregates to date-by-minute cells within windows around the
+three clock cutoffs (14:30--17:30, 18:30--21:30, and 05:00--07:00),
+recording for each cell the trip count, card-trip count, mean metered
+surcharge, sum of card tips, sum of card pre-tip totals, the count of
+tips exactly at a 20/25/30 percent button, and the zero-tip count. The
+second aggregates by month, pickup zone, and \$5 fare bin over the
+congestion-fee windows (2018m7--2019m12 and 2024m1--2025m6), recording
+counts, tip and base sums, and mean fee incidence. Four further
+builders complete the inputs: the 6:00am window cells (the main minute
+build collects only the afternoon and evening windows; the 6:00am
+builder is schema-identical), the JFK flat-fare minute cells
+(RatecodeID~2, all three windows, same schema), the 2012--13 vendor
+base-ladder cells, and the June-2025 tip-rate histogram cells behind
+Figure~\ref{fig:spikes}.
+
+Sample restrictions are applied identically in both builds: metered
+fares between \$3 and \$200, non-negative tips. Tips are recorded only
+for credit-card payments, so all tip means are conditional on card use;
+the card share is reported as a locked outcome at every cutoff.
+Date-by-minute cells are restricted to dates within each file's own
+month, which removes a small number of misdated records.
+
+\subsection{Regime and holiday coding}
+The rush-hour surcharge rose from \$1.00 to \$2.50 and the overnight
+surcharge from \$0.50 to \$1.00 on December 19, 2022
+\parencite{tlc2022notice}; cells are assigned to regimes on that date.
+Federal and municipal holidays, on which the rush surcharge does not
+apply, are excluded from weekday samples and are listed in the cleaning
+code.
+
+\subsection{Geographic treatment assignment}
+The congestion-fee columns exist only after each policy takes effect, so
+a treated indicator built from them would place every pre-period
+observation in the control group. We therefore learn the treated zone
+set from post-period fee incidence---pickup zones where the mean fee
+exceeds \$0.30, giving 52 zones for the 2025 CBD toll and 115 for the
+2019 surcharge---and apply that fixed zone set to the whole window.

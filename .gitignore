@@ -1,0 +1,21 @@
+# raw TLC parquet downloads (rebuilt on demand; never redistributed)
+data/raw/*
+!data/raw/.gitkeep
+# large minute-grain cells (rebuilt deterministically by code/py/ builders)
+data/cells/cells_minute*.csv
+# pipeline byproducts
+data/intermediate/
+data/processed/
+logs/*
+!logs/.gitkeep
+*.log
+# TeX build artifacts
+build/
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.out
+*.toc
+*.run.xml
+.DS_Store

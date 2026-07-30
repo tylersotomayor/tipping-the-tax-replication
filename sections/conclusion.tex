@@ -1,0 +1,80 @@
+\section{Conclusion}
+\label{sec:conclusion}
+
+New York taxi payment screens compute suggested tips as percentages of a
+total that includes every government surcharge on the meter. We show
+that this design choice has a measurable fiscal consequence: a
+statutory dollar of surcharge raises the average credit-card tip by
+about eleven cents---about fifteen cents per surcharge dollar the meter
+actually records.
+
+The estimate is well identified for a behavioral parameter of this kind.
+It comes from surcharges that switch on a clock, assigned to the minute
+of pickup, replicated at statutory doses from \$0.50 to \$5.00, in both
+directions, at three separate times of day, against two independent
+control series (weekends and exempt legal holidays), on a flat fare
+where the confound cannot exist by construction (JFK),
+and---crucially---reproduced by a design with no clock in it at all,
+the spatial boundary of the 2025 congestion toll. Across six within-day changes the effect spans $0.090$ to
+$0.117$ per statutory dollar ($\rho^{IV}$ of $0.122$--$0.150$ per
+recorded dollar); the spatial estimate is $0.107$ per statutory dollar
+against the clock designs' pooled $0.108$. Bandwidth and donut
+variations move it by less than a cent. Two estimates, both at 6:00am on weekdays, fail, and
+Section~\ref{sec:results-6am} shows why: the weekend estimates at that
+same clock and dose are normal, so what breaks the weekday window is the
+dawn compositional shift, not the mechanism.
+
+Getting there required one correction we want to flag for anyone
+replicating this design. The obvious specification---regress the tip on
+an indicator for being past the cutoff---is badly biased, because the
+metered fare jumps at 4:00pm along with the surcharge. Rush-hour trips
+are slower and dearer, and part of the observed tip step is that
+fare increase rather than the surcharge. Conditioning on the
+non-surcharge base removes it, and the weekend placebo falls by roughly
+three-quarters when it does. Designs that use time-of-day
+discontinuities in prices should expect the same problem wherever the
+underlying price moves with the time of day.
+
+The interpretation is straightforward. Riders tip on a surcharge dollar
+at essentially the rate they tip on a fare dollar, because the interface
+gives them no way to distinguish the two. They do not switch to cash,
+stop tipping, or abandon the default buttons in economically meaningful
+numbers. What looks like generosity toward drivers is, at the margin,
+arithmetic performed by a payment terminal.
+
+The demand margins sharpen the picture into a single sentence: riders
+do not retime hails around the 4:00pm fee, do not ride less when the
+congestion toll arrives, do not switch to cash, and offset only a fifth
+of a 150 percent surcharge increase---the fee is absorbed on every
+margin except the one the software moves for them. It also yields a
+concrete policy dial. One 2012 vendor already computed suggestions on
+the fare alone, so the counterfactual is not hypothetical: mandating a
+fare-only tip base would return roughly \$18.7 million a year of the 2019
+surcharge's induced gratuities and \$2.2 million of the toll's to riders,
+at zero collection cost, by changing one line of payment-terminal
+arithmetic---about thirty cents per surcharge-paying card trip.
+
+Two implications follow. For fiscal policy, the incidence of a fee
+levied on a metered transaction does not stop at the statutory payment:
+part of it continues past the agency to the worker, unlegislated and
+uncounted---roughly \$18.7 million from the 2019 congestion surcharge and
+\$2.2 million a year from the 2025 toll. For the growing literature on
+interface-mediated payments, the result identifies a channel by which
+policy and choice architecture interact: what a default is computed
+\emph{on} matters as much as what it is set \emph{to}.
+
+Three limitations bound the claims. Tips are observed only for card
+payments, so the pass-through we estimate is conditional on card use,
+which the design shows does not itself respond at the cutoff. Our
+estimates aggregate across payment vendors whose adherence rates differ
+by a factor of four, so $\rho$ is a market average rather than a
+behavioral primitive. And the 2019 congestion-surcharge window predates
+our minute-cell sample and abuts the pandemic; we treat it as
+corroborative. Appendix~\ref{app:replication} ties the modern mechanism to the
+canonical result: replicating \textcite{haggag2014default} on 2012--2013
+data shows the two payment vendors of that era disagreed about the base
+itself---one stopped at the fare plus surcharge, the other went on to
+include tax and tolls---and that this base difference accounts for about
+three-quarters of the vendor tip gap they documented. By 2025 every
+vendor had converged on the inclusive base, which is what turns a
+vendor-level quirk into a market-wide fiscal channel.

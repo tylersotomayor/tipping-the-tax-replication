@@ -1,0 +1,133 @@
+\section{Transfer Accounting and Policy Counterfactuals}
+\label{sec:counterfactuals}
+
+The estimates support a compact transfer accounting, and its striking
+feature is how little of it is assumption. Table~\ref{tab:welfare}
+collects the rows.
+
+\begin{table}[!htbp]
+  \centering
+  \singlespacing
+  \caption{\capttitle{The Tip-Tax Ledger (USD Millions per Year)}}
+  \label{tab:welfare}
+  \small
+  \begin{tabular}{@{}p{0.72\textwidth}r@{}}
+    \toprule
+    & USD m/yr \\
+    \midrule
+    \input output/tables/tab-welfare.tex
+    \bottomrule
+  \end{tabular}
+  \floatnotes{Transfers are sums of observed fee payments on
+  standard-rate card trips (2025 toll: 2025H1 annualized; 2019
+  surcharge: calendar 2019) multiplied by the design-estimated
+  pass-through. The counterfactual rows apply the dose linearity
+  established across the \$0.50--\$2.50 range. The deadweight-loss bound
+  is one-half times the toll times the trip decline at the lower edge of
+  the demand confidence interval; the point estimate of that decline is
+  indistinguishable from zero.}
+\end{table}
+
+\subsection{Transfers}
+The toll moves \$16.6 million a year from riders to the MTA on card
+trips---the intended, legislated flow---and \$2.2 million a year from
+riders to drivers through the tip base, the unintended flow this paper
+measures. The 2019 congestion surcharge, at its larger dose and volume,
+moved about \$18.7 million a year through the same channel. These are
+transfers, not losses: dollars change hands at face value.
+
+\subsection{Counterfactual designs}
+Because pass-through is stable in the dose from \$0.50 to \$5.00---the
+JFK flat-fare surcharge supplies the \$4.50 and \$5.00 points
+(Section~\ref{sec:results-controls})---the formula
+$\rho \times \text{fee} \times \text{volume}$ prices design
+alternatives directly. A toll set at \$2.50 would have induced roughly
+\$7.4 million a year in tips. A mandated fare-only tip base---the
+design one payment vendor used voluntarily in 2012
+(Appendix~\ref{app:replication})---sets the induced flow to zero at no
+collection cost, returning the full \$21 million a year across both
+fees to riders. The tip-side of any future meter fee can be priced the
+same way before enactment.
+
+\subsection{The base-rule menu}
+Because pass-through applies to whatever the base contains, every
+candidate base rule has a price, and Table~\ref{tab:menu} prices the
+2025 fee environment. On card trips, \$210 million a year of non-fare
+dollars sit inside the tip base, generating \$23--32 million a year in
+tips at the paper's two scalings. The government-remitted components
+alone contribute \$141 million of base and \$15--21 million of tips---
+and the largest of them is not the new CBD toll but the 2019 New York
+State congestion surcharge, still running at \$2.50 per trip: \$73
+million of base, \$8--11 million a year of induced tips. A regulator
+choosing the base is choosing a row of this menu. Excluding the CBD
+toll alone returns \$2--3 million a year to riders; excluding every
+government fee returns \$15--21 million; the fare-only base that one
+vendor used in 2012 returns \$23--32 million, at zero collection cost.
+Tips induced by the driver-kept surcharges are a different object---a
+gratuity on a price rather than on a tax---and the table labels them
+separately.
+
+\begin{table}[!htbp]
+  \centering
+  \singlespacing
+  \caption{\capttitle{The Base-Rule Menu (USD Millions per Year, 2025
+  Fee Environment)}}
+  \label{tab:menu}
+  \small
+  \begin{tabular}{@{}p{0.52\textwidth}rcc@{}}
+    \toprule
+    & In tip base & \multicolumn{2}{c}{Induced tips at $\rho$ of:} \\
+    \cmidrule(lr){3-4}
+    Component / base rule & (USD m/yr) & $0.108$ & $0.150$ \\
+    \midrule
+    \input output/tables/tab-menu.tex
+    \bottomrule
+  \end{tabular}
+  \floatnotes{Card trips, all rate codes, 2025H1 annualized. ``In tip
+  base'' sums each component's dollars on card trips. Induced tips
+  apply the pooled ITT per statutory dollar ($0.108$) and $\rho^{IV}$
+  per recorded dollar ($0.150$); collections are recorded dollars, so
+  the higher column is the aggregation-consistent one and the lower is
+  conservative. Base rules give the tips returned to riders if the
+  percentage buttons excluded the listed components.}
+\end{table}
+
+\subsection{Efficiency: the margins we measured are silent}
+A transfer becomes a welfare problem when it distorts behavior, and on
+every margin we can measure, it does not. Riders do not retime hails
+around the 4:00pm surcharge (density ratio $0.99$), do not reduce
+congestion-zone ridership detectably ($-1.0$ percent, SE $0.9$), do
+not flee to cash (the card share rises at the cutoff), and barely
+adjust tipping behavior itself (exact-default use falls under one
+point). As a gauge of scale rather than a welfare bound: a Harberger
+triangle computed at the unfavorable edge of the demand confidence
+interval---one-half times the toll times a 2.9 percent trip
+decline---comes to \$0.34 million a year, an order of magnitude below
+the transfer, and the point estimate of the decline is zero. Margins we
+cannot measure---whether inattentive riders would endorse the tip on
+reflection, and any driver labor-supply response---are discussed below.
+
+\subsection{What kind of transfer this is}
+Two clarifications about its nature. First, on the receiving side, a
+tip is the most driver-kept dollar in the fare stack: unlike metered
+revenue it does not offset lease payments or commissions, so an induced
+tip dollar is close to marginal driver income (net of card-processing
+fees, and taxable, since card tips are recorded). The driver remits the
+congestion fee itself and nets nothing on it; the induced tip is the
+only part of the flow that stays. Second, the transfer is not
+regulatory capture in the classic sense of an interested industry
+bending rules in its favor: no beneficiary chose the base. The TLC
+certifies the payment systems, so the base rule sits within the
+regulable surface, but the record shows convergence by payment vendors,
+not advocacy by drivers---closer to regulatory neglect than capture.
+``Unlegislated'' describes a decision nobody made.
+
+\subsection{What this accounting cannot say}
+Whether the transfer harms riders depends on whether the inattentive
+four-fifths would endorse the tip on reflection---a preferences
+question our design-based evidence cannot answer, so we report
+transfers as transfers. Driver labor supply, medallion values, and
+general-equilibrium effects are likewise out of scope. The
+distributional geography of the burden appears in
+Section~\ref{sec:results-fee}; we label it neighborhood exposure, not
+individual incidence.

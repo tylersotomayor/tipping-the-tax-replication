@@ -1,0 +1,88 @@
+\section{Empirical Strategy}
+\label{sec:model}
+
+\subsection{Pass-through from within-day surcharge discontinuities}
+Let $T_{dm}$ be the mean credit-card tip on trips picked up on date $d$
+in minute-of-day $m$, $S_{dm}$ the mean metered surcharge, and $B_{dm}$
+the mean pre-tip total \emph{net} of the surcharge---the metered fare and
+other components. Around a clock cutoff $c$ where a surcharge switches,
+with running variable $r = m - c$ and $D = \mathbf{1}\{r \ge 0\}$, we
+estimate
+\begin{equation}\label{eq:rd}
+  T_{dm} \;=\; \alpha + \pi D + \gamma B_{dm} + f(r) + \varepsilon_{dm},
+\end{equation}
+with $f(r)$ local linear on each side, cells weighted by card-trip
+counts, and standard errors clustered by date. Two scalings of $\pi$
+appear throughout. Dividing by the \emph{statutory} dose gives the
+intention-to-treat pass-through per legislated dollar, the paper's
+headline estimand. Instrumenting the measured surcharge $S_{dm}$ with
+$D$ gives $\rho^{IV} = \pi/\phi$, with $\phi$ the first-stage step; with
+a continuous treatment this is an average causal response
+\parencite{angrist1995two}, and it carries an exclusion restriction
+discussed in Section~\ref{sec:results-read}.
+
+The preferred specification differences the discontinuity of
+equation~\eqref{eq:rd} against the weekend one at the same clock, where
+no surcharge changes \parencite{grembi2016difference}. With $W_d$ an
+indicator for weekday dates and slopes interacted with $W_d$,
+\begin{equation}\label{eq:didisc}
+  T_{dm} \;=\; \alpha + \pi D + \omega W_d + \delta\,(D \times W_d)
+    + \gamma B_{dm} + f(r) \times W_d + \varepsilon_{dm},
+\end{equation}
+and $\delta$---the difference in discontinuities---divided by the
+statutory dose is the headline number. Differencing removes any 4:00pm
+discontinuity common to weekdays and weekends.
+
+\subsection{Why the non-surcharge base must be controlled}
+The term $\gamma B_{dm}$ is not cosmetic; it is the difference between a
+credible estimate and a biased one. At 4:00pm the tip base rises by
+\$2.49, of which \$1.95 is the surcharge. The remaining \$0.53 is the
+non-surcharge base---chiefly the metered fare, which jumps \$0.49
+because rush-hour trips are slower and dearer. Omitting $B_{dm}$
+attributes those fare-driven tip increases to the surcharge and inflates
+the estimate by roughly a third. Two diagnostics confirm the correction.
+First, the weekend placebo---the same clock on days when no rush
+surcharge exists---falls from \$0.088 to \$0.024 once $B_{dm}$ is
+included, which is what a correctly specified design should do to a
+placebo. Second, the corrected estimates
+agree across designs that have no reason to share a bias, including one
+identified purely in space (Section~\ref{sec:results-fee}). Under the
+weekday--weekend difference the control is nearly redundant: dropping it
+moves the estimate by about a cent (Section~\ref{sec:results}).
+
+\subsection{Identifying assumption}
+For the single difference, identification requires rider composition
+and tipping norms to evolve smoothly through the clock cutoff
+conditional on the fare. For the preferred difference-in-
+discontinuities the requirement is weaker: whatever jumps at 4:00pm for
+reasons other than the surcharge---shift changes, light, the rhythm of
+the working day---must jump equally on weekends, where the clock
+carries no surcharge. The residual threat is a weekday-specific,
+non-surcharge discontinuity at exactly the statutory minute; placebo
+cutoffs at surcharge-free minutes and a permutation over candidate
+cutoffs bound it. The assumption is also checkable, and
+Section~\ref{sec:results-6am} shows where it fails: at 6:00am on
+weekdays the dawn compositional shift is discontinuous in precisely the
+prohibited way, and the design falls apart there while its weekend twin
+does not. We take the failure as evidence the diagnostics bind, not as
+grounds to discard them.
+
+\subsection{Dose, direction, and transportability}
+The December 2022 increase supplies a second dose at each clock, so
+comparing discontinuities across regimes tests whether one $\rho$
+governs both. The within-day structure also signs the shocks: surcharges
+switch \emph{on} at 4:00pm (weekdays) and 8:00pm (weekends), and the net
+surcharge \emph{falls} at 8:00pm on weekdays when the rush surcharge
+ends and the smaller overnight surcharge begins. Comparing upward with
+downward changes tests whether pass-through is symmetric.
+
+Finally, the 2019 New York State congestion surcharge and the January
+2025 MTA congestion toll moved the same tip base at boundaries in space.
+Because the fee columns exist only after each policy begins, treated
+areas must be defined geographically: we learn the set of pickup zones
+where each fee is actually charged from post-period incidence and apply
+those zone sets to the pre-period, then estimate
+difference-in-differences on zone-by-fare-bin cells with zone-fare and
+month fixed effects, clustering by pickup zone. This design shares no
+variation with the clock designs, so agreement between them is a
+genuine out-of-sample test.
